@@ -10,7 +10,7 @@ let dy = -2;
 const ballRadius = 10;
 // paddle
 const paddleHeight = 15;
-const paddleWidth = 120;
+const paddleWidth = 100;
 let paddleX = (canvas.width - paddleWidth) / 2;
 // movement
 let rightPressed = false;
@@ -24,6 +24,20 @@ const brickPadding = 10;
 const brickOffsetTop = 30;
 const brickOffsetLeft = 30;
 const bricks = [];
+let score = 0;
+
+let lives = 3;
+
+document.addEventListener("keydown", keyDownHandler, false);
+document.addEventListener("keyup", keyUpHandler, false);
+document.addEventListener("mousemove", mouseMoveHandler, false);
+
+function mouseMoveHandler(e) {
+  const relativeX = e.clientX - canvas.offsetLeft;
+  if (relativeX > 0 && relativeX < canvas.width) {
+    paddleX = relativeX - paddleWidth / 2;
+  }
+}
 for (let c = 0; c < brickColumnCount; c++) {
   bricks[c] = [];
   for (let r = 0; r < brickRowCount; r++) {
@@ -68,6 +82,8 @@ function draw() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   drawBall();
   drawPaddle();
+  drawScore();
+  drawLives();
   collisionDetection();
   drawBricks();
   if (x + dx > canvas.width - ballRadius || x + dx < ballRadius) {
@@ -79,9 +95,17 @@ function draw() {
     if (x > paddleX && x < paddleX + paddleWidth) {
       dy = -dy;
     } else {
-      alert("GAME OVER");
-      document.location.reload();
-      clearInterval(interval);
+      lives--;
+      if (!lives) {
+        alert("GAME OVER");
+        document.location.reload();
+      } else {
+        x = canvas.width / 2;
+        y = canvas.height - 30;
+        dx = 2;
+        dy = -2;
+        paddleX = (canvas.width - paddleWidth) / 2;
+      }
     }
   }
   if (rightPressed) {
@@ -96,9 +120,9 @@ function draw() {
   }
   x += dx;
   y += dy;
+  requestAnimationFrame(draw);
 }
-document.addEventListener("keydown", keyDownHandler, false);
-document.addEventListener("keyup", keyUpHandler, false);
+
 function keyDownHandler(e) {
   if (e.key === "Right" || e.key === "ArrowRight") {
     rightPressed = true;
@@ -127,9 +151,24 @@ function collisionDetection() {
         ) {
           dy = -dy;
           b.status = 0;
+          score++;
+          if (score === brickRowCount * brickColumnCount) {
+            alert("YOU WIN, CONGRATULATIONS!");
+            document.location.reload();
+          }
         }
       }
     }
   }
 }
-const interval = setInterval(draw, 10);
+function drawScore() {
+  ctx.font = "16px Arial";
+  ctx.fillStyle = "white";
+  ctx.fillText(`Score: ${score}`, 8, 20);
+}
+function drawLives() {
+  ctx.font = "16px Arial";
+  ctx.fillStyle = "#0095DD";
+  ctx.fillText(`Lives: ${lives}`, canvas.width - 65, 20);
+}
+draw();
