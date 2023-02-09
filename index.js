@@ -5,8 +5,8 @@ const ctx = canvas.getContext("2d");
 
 let x = canvas.width / 2;
 let y = canvas.height - 30;
-let dx = 1;
-let dy = -1;
+let dx = 2;
+let dy = -2;
 
 const ballRadius = 5;
 // paddle
@@ -28,6 +28,9 @@ const bricks = [];
 let score = 0;
 
 let lives = 10;
+
+canvas.height = 480;
+canvas.width = 720;
 
 document.addEventListener("keydown", keyDownHandler, false);
 document.addEventListener("keyup", keyUpHandler, false);
@@ -80,7 +83,6 @@ function drawBall() {
 }
 
 function draw() {
-  screenSize();
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   drawBall();
   drawPaddle();
@@ -105,8 +107,8 @@ function draw() {
       } else {
         x = canvas.width / 2;
         y = canvas.height - 30;
-        dx = 1;
-        dy = -1;
+        dx = 2;
+        dy = -2;
         paddleX = (canvas.width - paddleWidth) / 2;
       }
     }
@@ -179,12 +181,9 @@ function drawLives() {
 const mediaQuery = window.matchMedia("(max-width: 1200px)");
 function screenSize() {
   if (mediaQuery.matches) {
-    canvas.height = 220;
+    canvas.height = 300;
     canvas.width = 340;
-  } else {
-    canvas.height = 480;
-    canvas.width = 720;
   }
 }
-
 draw();
+screenSize();

@@ -8,17 +8,26 @@
     <link rel="stylesheet" href="index.css" />
   </head>
   <body>
-    <canvas id="myCanvas"></canvas>
-    <div id="buttonDiv">
-      <button onmousedown="leftPressed = true" onmouseup="leftPressed = false">
-        =
-      </button>
-      <button
-        onmousedown="rightPressed = true"
-        onmouseup="rightPressed = false"
-      >
-        =>
-      </button>
+    <div id="main">
+      <canvas id="myCanvas"></canvas>
+      <div id="buttonDiv">
+        <button
+          ontouchstart="leftPressed = true"
+          ontouchcancel="leftPressed = false"
+          onmousedown="leftPressed = true"
+          onmouseup="leftPressed = false"
+        >
+          <=
+        </button>
+        <button
+          ontouchstart="rightPressed = true"
+          ontouchcancel="rightPressed = false"
+          onmousedown="rightPressed = true"
+          onmouseup="rightPressed = false"
+        >
+          =>
+        </button>
+      </div>
     </div>
     <script src="index.js"></script>
   </body>
