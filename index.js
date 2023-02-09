@@ -31,14 +31,7 @@ let lives = 10;
 
 document.addEventListener("keydown", keyDownHandler, false);
 document.addEventListener("keyup", keyUpHandler, false);
-document.addEventListener("mousemove", mouseMoveHandler, false);
 
-function mouseMoveHandler(e) {
-  const relativeX = e.clientX - canvas.offsetLeft;
-  if (relativeX > 0 && relativeX < canvas.width) {
-    paddleX = relativeX - paddleWidth / 2;
-  }
-}
 for (let c = 0; c < brickColumnCount; c++) {
   bricks[c] = [];
   for (let r = 0; r < brickRowCount; r++) {
@@ -84,8 +77,6 @@ function draw() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   drawBall();
   drawPaddle();
-  startSlider();
-
   drawScore();
   drawLives();
   collisionDetection();
@@ -143,6 +134,18 @@ function keyUpHandler(e) {
     leftPressed = false;
   }
 }
+
+function rightButton() {
+  setTimeout(() => {
+    rightPressed = false;
+  }, 50);
+}
+function leftButton() {
+  setTimeout(() => {
+    leftPressed = false;
+  }, 50);
+}
+
 function collisionDetection() {
   for (let c = 0; c < brickColumnCount; c++) {
     for (let r = 0; r < brickRowCount; r++) {
@@ -185,18 +188,6 @@ function screenSize() {
   } else {
     canvas.height = 480;
     canvas.width = 720;
-  }
-}
-
-function startSlider(slide) {
-  if (10 < slide) {
-    rightPressed = true;
-    draw();
-    rightPressed = false;
-  } else if (10 > slide) {
-    leftPressed = true;
-    draw();
-    leftPressed = false;
   }
 }
 
