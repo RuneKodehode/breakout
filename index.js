@@ -177,8 +177,8 @@ function drawLives() {
 const mediaQuery = window.matchMedia("(max-width: 1200px)");
 function screenSize() {
   if (mediaQuery.matches) {
-    canvas.height = 400;
-    canvas.width = 375;
+    canvas.height = 220;
+    canvas.width = 340;
   } else {
     canvas.height = 480;
     canvas.width = 720;
