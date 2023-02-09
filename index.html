@@ -8,7 +8,21 @@
     <link rel="stylesheet" href="index.css" />
   </head>
   <body>
-    <canvas id="myCanvas"></canvas>
+    <div id="main">
+      <canvas id="myCanvas"></canvas>
+      <div class="slidecontainer">
+        <input
+          type="range"
+          min="0"
+          max="20"
+          value="10"
+          class="slider"
+          id="myRange"
+          onchange="slider(this.value)"
+        />
+      </div>
+      <div id="sliderAmount"></div>
+    </div>
     <script src="index.js"></script>
   </body>
 </html>

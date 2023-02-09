@@ -1,3 +1,6 @@
+body {
+  background-color: transparent;
+}
 * {
   padding: 0;
   margin: 0;
@@ -6,4 +9,40 @@ canvas {
   background: black;
   display: block;
   margin: 0 auto;
+}
+#main {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+.slider {
+  margin-top: 20px;
+  -webkit-appearance: none;
+  width: 360px;
+  margin-left: auto;
+  margin-right: auto;
+  height: 25px;
+  background: #d3d3d3;
+  outline: none;
+  opacity: 0.7;
+}
+
+.slider:hover {
+  opacity: 1;
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 25px;
+  height: 25px;
+  background: #04aa6d;
+  cursor: pointer;
+}
+
+.slider::-moz-range-thumb {
+  width: 25px;
+  height: 25px;
+  background: #04aa6d;
+  cursor: pointer;
 }

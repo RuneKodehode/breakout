@@ -185,4 +185,9 @@ function screenSize() {
   }
 }
 
+function slider(slide) {
+  let sliderdiv = document.getElementById("sliderAmount");
+  sliderdiv.innerHTML = slide;
+}
+
 draw();
