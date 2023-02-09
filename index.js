@@ -2,12 +2,13 @@ const canvas = document.getElementById("myCanvas");
 const ctx = canvas.getContext("2d");
 
 // ballmovement
+
 let x = canvas.width / 2;
 let y = canvas.height - 30;
-let dx = 2;
-let dy = -2;
+let dx = 5;
+let dy = -5;
 
-const ballRadius = 10;
+const ballRadius = 5;
 // paddle
 const paddleHeight = 15;
 const paddleWidth = 100;
@@ -16,17 +17,17 @@ let paddleX = (canvas.width - paddleWidth) / 2;
 let rightPressed = false;
 let leftPressed = false;
 // bricks
-const brickRowCount = 3;
-const brickColumnCount = 5;
-const brickWidth = 75;
-const brickHeight = 20;
+const brickRowCount = 4;
+const brickColumnCount = 6;
+const brickWidth = 60;
+const brickHeight = 15;
 const brickPadding = 10;
 const brickOffsetTop = 30;
 const brickOffsetLeft = 30;
 const bricks = [];
 let score = 0;
 
-let lives = 3;
+let lives = 10;
 
 document.addEventListener("keydown", keyDownHandler, false);
 document.addEventListener("keyup", keyUpHandler, false);
@@ -54,7 +55,7 @@ function drawBricks() {
         bricks[c][r].y = brickY;
         ctx.beginPath();
         ctx.rect(brickX, brickY, brickWidth, brickHeight);
-        ctx.fillStyle = "cyan";
+        ctx.fillStyle = "white";
         ctx.fill();
         ctx.closePath();
       }
@@ -65,7 +66,7 @@ function drawBricks() {
 function drawPaddle() {
   ctx.beginPath();
   ctx.rect(paddleX, canvas.height - paddleHeight, paddleWidth, paddleHeight);
-  ctx.fillStyle = "hotpink";
+  ctx.fillStyle = "white";
   ctx.fill();
   ctx.closePath();
 }
@@ -73,12 +74,13 @@ function drawPaddle() {
 function drawBall() {
   ctx.beginPath();
   ctx.arc(x, y, ballRadius, 0, Math.PI * 2);
-  ctx.fillStyle = "red";
+  ctx.fillStyle = "white";
   ctx.fill();
   ctx.closePath();
 }
 
 function draw() {
+  screenSize();
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   drawBall();
   drawPaddle();
@@ -102,8 +104,8 @@ function draw() {
       } else {
         x = canvas.width / 2;
         y = canvas.height - 30;
-        dx = 2;
-        dy = -2;
+        dx = 5;
+        dy = -5;
         paddleX = (canvas.width - paddleWidth) / 2;
       }
     }
@@ -162,13 +164,25 @@ function collisionDetection() {
   }
 }
 function drawScore() {
-  ctx.font = "16px Arial";
+  ctx.font = "20px Arial";
   ctx.fillStyle = "white";
   ctx.fillText(`Score: ${score}`, 8, 20);
 }
 function drawLives() {
-  ctx.font = "16px Arial";
-  ctx.fillStyle = "#0095DD";
-  ctx.fillText(`Lives: ${lives}`, canvas.width - 65, 20);
+  ctx.font = "20px Arial";
+  ctx.fillStyle = "white";
+  ctx.fillText(`Lives: ${lives}`, canvas.width - 80, 20);
 }
+
+const mediaQuery = window.matchMedia("(max-width: 1200px)");
+function screenSize() {
+  if (mediaQuery.matches) {
+    canvas.height = 400;
+    canvas.width = 375;
+  } else {
+    canvas.height = 480;
+    canvas.width = 720;
+  }
+}
+
 draw();
