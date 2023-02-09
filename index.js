@@ -38,6 +38,13 @@ for (let c = 0; c < brickColumnCount; c++) {
     bricks[c][r] = { x: 0, y: 0, status: 1 };
   }
 }
+function mouseDown() {
+  document.getElementById("myP").style.color = "red";
+}
+
+function mouseUp() {
+  document.getElementById("myP").style.background = "blue";
+}
 function drawBricks() {
   for (let c = 0; c < brickColumnCount; c++) {
     for (let r = 0; r < brickRowCount; r++) {
@@ -133,17 +140,6 @@ function keyUpHandler(e) {
   } else if (e.key === "Left" || e.key === "ArrowLeft") {
     leftPressed = false;
   }
-}
-
-function rightButton() {
-  setTimeout(() => {
-    rightPressed = false;
-  }, 50);
-}
-function leftButton() {
-  setTimeout(() => {
-    leftPressed = false;
-  }, 50);
 }
 
 function collisionDetection() {
