@@ -5,8 +5,8 @@ const ctx = canvas.getContext("2d");
 
 let x = canvas.width / 2;
 let y = canvas.height - 30;
-let dx = 5;
-let dy = -5;
+let dx = 1;
+let dy = -1;
 
 const ballRadius = 5;
 // paddle
@@ -84,10 +84,13 @@ function draw() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   drawBall();
   drawPaddle();
+  startSlider();
+
   drawScore();
   drawLives();
   collisionDetection();
   drawBricks();
+
   if (x + dx > canvas.width - ballRadius || x + dx < ballRadius) {
     dx = -dx;
   }
@@ -104,8 +107,8 @@ function draw() {
       } else {
         x = canvas.width / 2;
         y = canvas.height - 30;
-        dx = 5;
-        dy = -5;
+        dx = 1;
+        dy = -1;
         paddleX = (canvas.width - paddleWidth) / 2;
       }
     }
@@ -185,9 +188,16 @@ function screenSize() {
   }
 }
 
-function slider(slide) {
-  let sliderdiv = document.getElementById("sliderAmount");
-  sliderdiv.innerHTML = slide;
+function startSlider(slide) {
+  if (10 < slide) {
+    rightPressed = true;
+    draw();
+    rightPressed = false;
+  } else if (10 > slide) {
+    leftPressed = true;
+    draw();
+    leftPressed = false;
+  }
 }
 
 draw();
