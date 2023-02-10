@@ -32,8 +32,8 @@ let lives = 10;
 const mediaQuery = window.matchMedia("(max-width: 600px)");
 function screenSize() {
   if (mediaQuery.matches) {
-    canvas.height = 260;
-    canvas.width = 340;
+    canvas.height = 240;
+    canvas.width = 320;
     brickRowCount = 4;
     brickColumnCount = 8;
     brickWidth = 30;
