@@ -1,6 +1,7 @@
 const canvas = document.getElementById("myCanvas");
 const ctx = canvas.getContext("2d");
-
+canvas.height = 480;
+canvas.width = 720;
 // ballmovement
 
 let x = canvas.width / 2;
@@ -17,21 +18,30 @@ let paddleX = (canvas.width - paddleWidth) / 2;
 let rightPressed = false;
 let leftPressed = false;
 // bricks
-const brickRowCount = 4;
-const brickColumnCount = 6;
-const brickWidth = 60;
-const brickHeight = 15;
-const brickPadding = 10;
-const brickOffsetTop = 30;
-const brickOffsetLeft = 30;
-const bricks = [];
+let brickRowCount = 6;
+let brickColumnCount = 10;
+let brickWidth = 60;
+let brickHeight = 15;
+let brickPadding = 5;
+let brickOffsetTop = 30;
+let brickOffsetLeft = 30;
+let bricks = [];
 let score = 0;
 
 let lives = 10;
-
-canvas.height = 480;
-canvas.width = 720;
-
+const mediaQuery = window.matchMedia("(max-width: 1200px)");
+function screenSize() {
+  if (mediaQuery.matches) {
+    canvas.height = 300;
+    canvas.width = 340;
+    brickRowCount = 4;
+    brickColumnCount = 8;
+    brickWidth = 30;
+    brickHeight = 10;
+    brickPadding = 5;
+  }
+}
+screenSize();
 document.addEventListener("keydown", keyDownHandler, false);
 document.addEventListener("keyup", keyUpHandler, false);
 
@@ -178,12 +188,4 @@ function drawLives() {
   ctx.fillText(`Lives: ${lives}`, canvas.width - 80, 20);
 }
 
-const mediaQuery = window.matchMedia("(max-width: 1200px)");
-function screenSize() {
-  if (mediaQuery.matches) {
-    canvas.height = 300;
-    canvas.width = 340;
-  }
-}
 draw();
-screenSize();
