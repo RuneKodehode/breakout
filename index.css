@@ -26,5 +26,5 @@ button {
 #buttonDiv {
   display: flex;
   justify-content: space-around;
-  padding: 40px;
+  margin-top: 40px;
 }
