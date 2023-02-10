@@ -25,6 +25,7 @@ button {
 }
 #buttonDiv {
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
+  gap: 35%;
   margin-top: 40px;
 }

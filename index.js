@@ -1,6 +1,6 @@
 const canvas = document.getElementById("myCanvas");
 const ctx = canvas.getContext("2d");
-canvas.height = 480;
+canvas.height = 400;
 canvas.width = 720;
 // ballmovement
 
@@ -32,7 +32,7 @@ let lives = 10;
 const mediaQuery = window.matchMedia("(max-width: 600px)");
 function screenSize() {
   if (mediaQuery.matches) {
-    canvas.height = 300;
+    canvas.height = 260;
     canvas.width = 340;
     brickRowCount = 4;
     brickColumnCount = 8;
