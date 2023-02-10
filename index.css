@@ -15,6 +15,7 @@ button {
   height: 50px;
   background-color: transparent;
   border: 2px solid white;
+  border-radius: 5px;
 }
 #main {
   display: flex;
