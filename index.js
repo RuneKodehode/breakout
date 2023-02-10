@@ -29,7 +29,7 @@ let bricks = [];
 let score = 0;
 
 let lives = 10;
-const mediaQuery = window.matchMedia("(max-width: 1200px)");
+const mediaQuery = window.matchMedia("(max-width: 600px)");
 function screenSize() {
   if (mediaQuery.matches) {
     canvas.height = 300;
