@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Breakout Game</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div id="main">
+      <canvas id="myCanvas"></canvas>
+      <div id="buttonDiv">
+        <button
+          id="leftButton"
+          ontouchstart="leftPressed = true"
+          ontouchcancel="leftPressed = false"
+          onmousedown="leftPressed = true"
+          onmouseup="leftPressed = false"
+        >
+          <svg
+            width="39"
+            height="44"
+            viewBox="0 0 39 44"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M3.75 19.8349L32.25 3.38045C33.9167 2.4182 36 3.62101 36 5.54552L36 38.4545C36 40.379 33.9167 41.5818 32.25 40.6195L3.75 24.1651C2.08333 23.2028 2.08333 20.7972 3.75 19.8349Z"
+              stroke="white"
+              stroke-width="3"
+            />
+          </svg>
+        </button>
+        <button
+          id="rightButton"
+          ontouchstart="rightPressed = true"
+          ontouchcancel="rightPressed = false"
+          onmousedown="rightPressed = true"
+          onmouseup="rightPressed = false"
+        >
+          <svg
+            width="39"
+            height="44"
+            viewBox="0 0 39 44"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M35.25 24.1651L6.75 40.6195C5.08333 41.5818 3 40.379 3 38.4545L3 5.54552C3 3.62102 5.08333 2.4182 6.75 3.38045L35.25 19.8349C36.9167 20.7972 36.9167 23.2028 35.25 24.1651Z"
+              stroke="white"
+              stroke-width="3"
+            />
+          </svg>
+        </button>
+      </div>
+    </div>
+    <script src="index.js"></script>
+  </body>
+</html>
