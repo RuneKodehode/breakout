@@ -1,5 +1,7 @@
 const canvas = document.getElementById("myCanvas");
 const ctx = canvas.getContext("2d");
+const rightButton = document.getElementById("rightButton");
+const leftButton = document.getElementById("leftButton");
 canvas.height = 400;
 canvas.width = 720;
 // ballmovement
@@ -51,13 +53,7 @@ for (let c = 0; c < brickColumnCount; c++) {
     bricks[c][r] = { x: 0, y: 0, status: 1 };
   }
 }
-function mouseDown() {
-  document.getElementById("myP").style.color = "red";
-}
 
-function mouseUp() {
-  document.getElementById("myP").style.background = "blue";
-}
 function drawBricks() {
   for (let c = 0; c < brickColumnCount; c++) {
     for (let r = 0; r < brickRowCount; r++) {
@@ -68,7 +64,7 @@ function drawBricks() {
         bricks[c][r].y = brickY;
         ctx.beginPath();
         ctx.rect(brickX, brickY, brickWidth, brickHeight);
-        ctx.fillStyle = "white";
+        ctx.fillStyle = "black";
         ctx.fill();
         ctx.closePath();
       }
@@ -79,7 +75,7 @@ function drawBricks() {
 function drawPaddle() {
   ctx.beginPath();
   ctx.rect(paddleX, canvas.height - paddleHeight, paddleWidth, paddleHeight);
-  ctx.fillStyle = "white";
+  ctx.fillStyle = "black";
   ctx.fill();
   ctx.closePath();
 }
@@ -87,7 +83,7 @@ function drawPaddle() {
 function drawBall() {
   ctx.beginPath();
   ctx.arc(x, y, ballRadius, 0, Math.PI * 2);
-  ctx.fillStyle = "white";
+  ctx.fillStyle = "orangered";
   ctx.fill();
   ctx.closePath();
 }
@@ -141,8 +137,16 @@ function draw() {
 function keyDownHandler(e) {
   if (e.key === "Right" || e.key === "ArrowRight") {
     rightPressed = true;
+    rightButton.classList.add("animate");
+    setTimeout(() => {
+      rightButton.classList.remove("animate");
+    }, 90);
   } else if (e.key === "Left" || e.key === "ArrowLeft") {
     leftPressed = true;
+    leftButton.classList.add("animate");
+    setTimeout(() => {
+      leftButton.classList.remove("animate");
+    }, 90);
   }
 }
 
@@ -179,12 +183,12 @@ function collisionDetection() {
 }
 function drawScore() {
   ctx.font = "20px Arial";
-  ctx.fillStyle = "white";
+  ctx.fillStyle = "orangered";
   ctx.fillText(`Score: ${score}`, 8, 20);
 }
 function drawLives() {
   ctx.font = "20px Arial";
-  ctx.fillStyle = "white";
+  ctx.fillStyle = "orangered";
   ctx.fillText(`Lives: ${lives}`, canvas.width - 80, 20);
 }
 
