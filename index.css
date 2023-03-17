@@ -6,18 +6,31 @@ body {
   margin: 0;
 }
 canvas {
-  background: black;
+  background: rgba(0, 0, 0, 0);
   display: block;
   margin: 0 auto;
+  border: 1px solid orangered;
+  border-radius: 4px;
 }
 button {
-  width: 50px;
-  height: 50px;
-  background-color: white;
-  border: 2px solid white;
+  width: 4em;
+  height: 4em;
+  color: white;
+  background-color: orangered;
+  border: 3px solid rgb(0, 0, 0);
   border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  box-shadow: 2px 2px 5px black;
 }
-#main {
+button:hover {
+  cursor: pointer;
+}
+button:active {
+  animation: whitekey 0.2s ease-out;
+}
+button:oncli #main {
   display: flex;
   flex-direction: column;
   align-content: center;
@@ -27,5 +40,18 @@ button {
   display: flex;
   justify-content: center;
   gap: 35%;
-  margin-top: 20px;
+  margin-top: 2em;
+}
+
+.animate {
+  animation: whitekey 0.1s ease-out;
+}
+
+@keyframes whitekey {
+  100% {
+    transform: translateY(10px);
+    box-shadow: -1px -1px 2px rgba(255, 255, 255, 0.2) inset,
+      0 -3px 2px -3px rgba(173, 157, 157, 0.6) inset,
+      0 2px 2px rgba(209, 199, 199, 0.766);
+  }
 }
